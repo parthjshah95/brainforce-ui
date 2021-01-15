@@ -6,13 +6,35 @@
     <Block/>
     <Block/>
     <Block/> -->
-
+    <div class="text">
+      <h1>Typing speed test</h1>
+      <h3>Test your typing speed and comfort with various layouts. When ready, press the start button and enter the text below.</h3>
+      <p>
+        Brainforce rethinks how we interact with the digital world. Control your smartphone or computer using just your gaze and thoughts! Brainforce uses eye tracking for cursor control and Electroencephalography to monitor brain waves of the user. These brain waves are then used to detect when the user intends to 'click' on an item.
+      </p>
+      <p>
+        Brainforce... just look, and think!
+      </p>
+    </div>
     <textarea
       :value="input"
-      class="input"
+      id="input"
       @input="onInputChange"
       placeholder="Enter the above text here using the virtual keyboard below."
     />
+    <div class="dropdown-div">
+      <div>
+        <button class="start-button">Start</button>
+        <span>&emsp;Time: {{time}} seconds </span>
+      </div>
+      <div>
+        <span>Keyboard layout:&emsp;&emsp;</span>
+        <select v-model="layout" class="dropdown">
+          <option v-for="l in allLayouts" :key="l">{{l}}</option>
+        </select>
+      </div>      
+    </div>
+    
     <SimpleKeyboard 
       @onChange="onChange" 
       @onKeyPress="onKeyPress" 
@@ -26,8 +48,6 @@
 import Block from './components/Block.vue'
 import SimpleKeyboard from "./components/SimpleKeyboard";
 
-let show_cursor = true
-// let show_cursor = false
 
 export default {
   name: 'App',
@@ -38,52 +58,116 @@ export default {
   data(){
     return {
       no_cursor_style: "cursor: none;",
-      show_cursor: show_cursor,
+      show_cursor: true,
       input: "",
-      layout: "custom"
+      layout: "custom",
+      allLayouts: [
+        "qwerty",
+        "custom"
+      ] 
     }
   },
   methods: {
     onChange(input) {
       this.input = input;
+      this.focus();
     },
     onKeyPress(button) {
       console.log("button", button);
+      this.focus();
     },
     onInputChange(input) {
       this.input = input.target.value;
+      this.focus();
+    },
+    focus(){
+      document.getElementById("input").focus();
     }
+  },
+  computed: {
+      time(){
+
+      }
   }
 }
 </script>
 
 <style lang="scss">
-$inp-height: 200px;
-.container{
-  height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  align-content: center;
-  background-color: #eee;
-}
+
 body{
   height:100%;
 }
 html{
   height:100%;
 }
-.input{
+.container{
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  background-color: #eee;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.text{
+  flex-grow:1;
+  width: 100%;
+}
+span{
+  margin: 5px 10px;
+}
+#input{
   width: calc(100% - 40px);
   margin: 10px auto;
-  height: $inp-height;
+  height: 150px;
   padding: 10px 20px;
   border-radius: 15px;
   border: solid 1px lightgrey;
   font-size: 1.5rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.dropdown-div{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  // box-shadow: 2px 2px 2px 1px rgba(30, 20, 10, 0.2);
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+$btn-color:#fc5603;
+.dropdown{
+  text-decoration: none;
+  width: max-content;
+  border-radius: 5px;
+  color: white;
+  border: 2px solid $btn-color;
+  background-color: $btn-color;
+  transition: 0.3s;
+  padding: 5px 10px;
+  cursor: pointer;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;    
+  font-size: 1.3rem;
+  &:hover{
+    border: 2px solid $btn-color;
+    background-color: white;
+    color: #BF360C;
+  }
+  &:active{
+    background-color: #FFCCBC;
+  }
+  &:focus{
+    outline: none;
+  }
+}
+.start-button{
+  @extend .dropdown;
 }
 </style>
