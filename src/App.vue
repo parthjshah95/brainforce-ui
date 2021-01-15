@@ -6,13 +6,19 @@
     <Block/>
     <Block/>
     <Block/> -->
-    <input
+
+    <textarea
       :value="input"
       class="input"
       @input="onInputChange"
-      placeholder="Tap on the virtual keyboard to start"
-    >
-    <SimpleKeyboard @onChange="onChange" @onKeyPress="onKeyPress" :input="input"/>
+      placeholder="Enter the above text here using the virtual keyboard below."
+    />
+    <SimpleKeyboard 
+      @onChange="onChange" 
+      @onKeyPress="onKeyPress" 
+      :input="input"
+      :layout="layout"
+    />
   </div>
 </template>
 
@@ -33,7 +39,8 @@ export default {
     return {
       no_cursor_style: "cursor: none;",
       show_cursor: show_cursor,
-      input: ""
+      input: "",
+      layout: "custom"
     }
   },
   methods: {
@@ -51,8 +58,11 @@ export default {
 </script>
 
 <style lang="scss">
+$inp-height: 200px;
 .container{
   height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -65,5 +75,15 @@ body{
 }
 html{
   height:100%;
+}
+.input{
+  width: calc(100% - 40px);
+  margin: 10px auto;
+  height: $inp-height;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: solid 1px lightgrey;
+  font-size: 1.5rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 </style>

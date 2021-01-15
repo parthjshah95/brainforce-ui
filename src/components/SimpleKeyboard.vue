@@ -5,6 +5,9 @@
 <script>
 import Keyboard from "simple-keyboard"
 // import "simple-keyboard/build/css/index.css"
+import japaneseLayout from "simple-keyboard-layouts/build/layouts/japanese.js";
+import customLayout from "../layouts/custom1.js";
+
 
 export default {
   name: "SimpleKeyboard",
@@ -15,15 +18,24 @@ export default {
     },
     input: {
       type: String
+    },
+    layout: {
+      type: String
     }
   },
   data: () => ({
-    keyboard: null
+    keyboard: null,
+    layoutFiles: {
+        "qwerty": null,
+        "japanese": japaneseLayout,
+        "custom": customLayout
+    }
   }),
   mounted() {
     this.keyboard = new Keyboard({
       onChange: this.onChange,
-      onKeyPress: this.onKeyPress
+      onKeyPress: this.onKeyPress,
+      layout: this.layoutFiles[this.layout]
     });
   },
   methods: {

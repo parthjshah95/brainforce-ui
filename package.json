@@ -11,7 +11,10 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "register-service-worker": "^1.7.1",
-    "simple-keyboard": "^2.32.66",
+    "simple-keyboard": "^2.32.80",
+    "simple-keyboard-autocorrect": "^2.2.87",
+    "simple-keyboard-layouts": "^1.15.98",
+    "swipe-keyboard": "^2.2.97",
     "vue": "^2.6.11"
   },
   "devDependencies": {
