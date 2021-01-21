@@ -39,6 +39,13 @@ export default {
     });
   },
   methods: {
+    changeLayout(layout){
+        this.keyboard = new Keyboard({
+            onChange: this.onChange,
+            onKeyPress: this.onKeyPress,
+            layout: this.layoutFiles[layout]
+        });
+    },
     onChange(input) {
       this.$emit("onChange", input);
     },

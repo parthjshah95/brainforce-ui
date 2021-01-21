@@ -7,8 +7,11 @@
     <Block/>
     <Block/> -->
     <div class="text">
-      <h1>Typing speed test</h1>
-      <h3>Test your typing speed and comfort with various layouts. When ready, press the start button and enter the text below.</h3>
+      <!-- <h1>Typing speed test</h1>
+      <h3>Test your typing speed and comfort with various layouts. When ready, press the start button and enter the text below.</h3> -->
+      <h1>Alternative keyboard layouts</h1>
+      <h3>Try out the custom keyboard and compare with the standard qwerty layout</h3>
+      <h4>(Example text to try typing with:)</h4>
       <p>
         Brainforce rethinks how we interact with the digital world. Control your smartphone or computer using just your gaze and thoughts! Brainforce uses eye tracking for cursor control and Electroencephalography to monitor brain waves of the user. These brain waves are then used to detect when the user intends to 'click' on an item.
       </p>
@@ -23,19 +26,20 @@
       placeholder="Enter the above text here using the virtual keyboard below."
     />
     <div class="dropdown-div">
-      <div>
+      <!-- <div>
         <button class="start-button">Start</button>
         <span>&emsp;Time: {{time}} seconds </span>
-      </div>
+      </div> -->
       <div>
         <span>Keyboard layout:&emsp;&emsp;</span>
-        <select v-model="layout" class="dropdown">
+        <select v-model="layout" class="dropdown" @change="changeLayout($event)">
           <option v-for="l in allLayouts" :key="l">{{l}}</option>
         </select>
       </div>      
     </div>
     
     <SimpleKeyboard 
+      ref="SimpleKeyboard"
       @onChange="onChange" 
       @onKeyPress="onKeyPress" 
       :input="input"
@@ -53,7 +57,7 @@ export default {
   name: 'App',
   components: {
     Block,
-    SimpleKeyboard
+    'SimpleKeyboard': SimpleKeyboard
   },
   data(){
     return {
@@ -82,6 +86,10 @@ export default {
     },
     focus(){
       document.getElementById("input").focus();
+    },
+    changeLayout(event){
+      console.log(event);
+      this.$refs.SimpleKeyboard.changeLayout(this.layout);
     }
   },
   computed: {
@@ -101,21 +109,17 @@ html{
   height:100%;
 }
 .container{
-  height: 100%;
+  // height: 100%;
   padding: 20px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: center;
-  align-content: center;
   background-color: #eee;
   font-family: Arial, Helvetica, sans-serif;
 }
 .text{
-  flex-grow:1;
+  flex-grow: 1;
+  flex-shrink: 3;
   width: 100%;
+  min-height: 10;
 }
 span{
   margin: 5px 10px;
