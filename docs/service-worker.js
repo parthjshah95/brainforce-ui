@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.9491d2c114a2a68a1ef2c451dc5ea7b2.js"
+  "/precache-manifest.9054c2a782b59133930dbc88670ce2ce.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "brainforce-ui"});
