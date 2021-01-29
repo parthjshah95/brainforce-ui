@@ -7,6 +7,7 @@ import Keyboard from "simple-keyboard"
 // import "simple-keyboard/build/css/index.css"
 import japaneseLayout from "simple-keyboard-layouts/build/layouts/japanese.js";
 import customLayout from "../layouts/custom1.js";
+import pythonLayout from "../layouts/python.js";
 
 
 export default {
@@ -28,7 +29,8 @@ export default {
     layoutFiles: {
         "qwerty": null,
         "japanese": japaneseLayout,
-        "custom": customLayout
+        "custom": customLayout,
+        "python": pythonLayout
     }
   }),
   mounted() {

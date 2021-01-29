@@ -7,26 +7,21 @@
     <Block/>
     <Block/> -->
     <div class="text">
-      <!-- <h1>Typing speed test</h1>
-      <h3>Test your typing speed and comfort with various layouts. When ready, press the start button and enter the text below.</h3> -->
-      <h3>Alternative keyboard layouts</h3>
-      <h4>Try out the custom keyboard and compare with the standard qwerty layout. Example text to try typing with:</h4>
-      <p>
-        Brainforce rethinks how we interact with the digital world. Control your smartphone or computer using just your gaze and thoughts! Brainforce uses eye tracking for cursor control and Electroencephalography to monitor brain waves of the user. These brain waves are then used to detect when the user intends to 'click' on an item.
-        Brainforce... just look, and think!
-      </p>
+      <h1>Accessible programming</h1>
+      <h3>Python</h3>
+
     </div>
     <input
       :value="input"
       id="input"
       @input="onInputChange"
-      placeholder="Enter the above text here using the virtual keyboard below."
+      placeholder="Start coding!"
     />
     <div class="dropdown-div">
-      <!-- <div>
+      <div>
         <button class="start-button">Start</button>
-        <span>&emsp;Time: {{time}} seconds </span>
-      </div> -->
+        <span v-if="countingTime">&emsp;Time: {{time}} seconds </span>
+      </div>
       <div>
         <span>Keyboard layout:&emsp;&emsp;</span>
         <select v-model="layout" class="dropdown" @change="changeLayout($event)">
@@ -61,11 +56,13 @@ export default {
       no_cursor_style: "cursor: none;",
       show_cursor: true,
       input: "",
-      layout: "custom",
+      layout: "python",
       allLayouts: [
         "qwerty",
-        "custom"
-      ] 
+        "custom",
+        "python"
+      ],
+      countingTime: false
     }
   },
   methods: {
